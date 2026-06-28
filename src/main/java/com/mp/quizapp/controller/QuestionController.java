@@ -3,9 +3,11 @@ package com.mp.quizapp.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,10 +41,22 @@ public class QuestionController {
     }
 
     // It will accept question from the client side and @RequestBody send it to body
-    //We we want to send data we use @PostMapping
+    // We we want to send data we use @PostMapping
     @PostMapping("add")
     public String addQuestion(@RequestBody Question question) {
         return questionService.addQuestion(question);
+    }
+
+    // We we want to delete Question, we use @PostMapping
+    @DeleteMapping("delete/{id}")
+    public String deleteQuestion(@PathVariable Integer id) {
+        return questionService.deleteQuestion(id);
+    }
+
+    // We we want to update, we use @PutMapping
+    @PutMapping("update/{id}")
+    public String updateQuestion(@PathVariable Integer id, @RequestBody Question updatedQuestion) {
+        return questionService.updateQuestion(id, updatedQuestion);
     }
 
 }
