@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.mp.quizapp.dao.QuestionDao;
-import com.mp.quizapp.entities.Question;
+import com.mp.quizapp.model.Question;
 
 @Service
 public class QuestionService {
