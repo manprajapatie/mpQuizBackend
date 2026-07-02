@@ -14,5 +14,4 @@ public class QuizappApplication {
 				entry.getKey(), entry.getValue()));
 		SpringApplication.run(QuizappApplication.class, args);
 	}
-
 }
