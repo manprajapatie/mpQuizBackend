@@ -25,7 +25,7 @@ public class QuizService {
     @Autowired
     QuestionDao questionDao;
 
-    public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
+    public ResponseEntity<Integer> createQuiz(String category, int numQ, String title) {
 
         // Getting Random Question from database
         List<Question> questions = questionDao.findRandomQuestionsByCategory(category, numQ);
@@ -35,7 +35,7 @@ public class QuizService {
         quiz.setQuestions(questions);
         quizDao.save(quiz);
 
-        return new ResponseEntity<>("Success", HttpStatus.CREATED);
+        return new ResponseEntity<>(quiz.getId(), HttpStatus.CREATED);
     }
 
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(Integer id) {

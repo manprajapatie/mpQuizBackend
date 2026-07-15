@@ -26,7 +26,7 @@ public class QuizController {
     // @postMapping coz we want to send url
     // @RequestParam for taking value from url
     @PostMapping("create")
-    public ResponseEntity<String> createQuiz(
+    public ResponseEntity<Integer> createQuiz(
             @RequestParam String category,
             @RequestParam int numQ,
             @RequestParam String title) {
