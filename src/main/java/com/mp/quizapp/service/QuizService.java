@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import java.util.stream.Collectors;
+
+import com.mp.quizapp.dto.QuizDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,5 +69,18 @@ public class QuizService {
             i++;
         }
         return new ResponseEntity<>(right, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<QuizDTO>> getAllQuiz() {
+
+        List<QuizDTO> quizzes = quizDao.findAll()
+                .stream()
+                .map(quiz -> new QuizDTO(
+                        quiz.getId(),
+                        quiz.getTitle(),
+                        quiz.getQuestions().size()))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(quizzes);
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mp.quizapp.model.QuestionWrapper;
 import com.mp.quizapp.model.Response;
 import com.mp.quizapp.service.QuizService;
+import com.mp.quizapp.dto.QuizDTO;
 
 @RestController
 @RequestMapping("quiz")
@@ -39,8 +40,14 @@ public class QuizController {
     }
 
     @PostMapping("submit/{id}")
-    public ResponseEntity<Integer> submitQuiz(@PathVariable Integer id, @RequestBody List<Response>responses){
+    public ResponseEntity<Integer> submitQuiz(@PathVariable Integer id, @RequestBody List<Response> responses) {
         return quizService.calculateResult(id, responses);
+    }
+
+    
+    @GetMapping("/all")
+    public ResponseEntity<List<QuizDTO>> getAllQuiz() {
+        return quizService.getAllQuiz();
     }
 
 }
